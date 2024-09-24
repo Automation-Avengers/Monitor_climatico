@@ -300,12 +300,10 @@ def unir_planilhas():
 
     # Unir as planilhas pela coluna "Dia"
     df_comparado = pd.merge(df_manaus, df_saopaulo, on='Dia')
-
-    # Gerar gráficos comparativos
-    plt.figure(figsize=(14, 7))
+ 
     
     # Comparação das temperaturas máximas
-    plt.subplot(3, 1, 1)
+    plt.figure(figsize=(12, 6))
     plt.plot(df_comparado['Dia'], df_comparado['Temp. maxima Manaus'], label='Manaus', marker='o')
     plt.plot(df_comparado['Dia'], df_comparado['Temp. maxima SP'], label='São Paulo', marker='o')
     plt.title('Comparação de Temperaturas Máximas')
@@ -317,7 +315,7 @@ def unir_planilhas():
     plt.show()
 
     # Comparação da umidade
-    plt.subplot(3, 1, 2)
+    plt.figure(figsize=(12, 6))
     plt.plot(df_comparado['Dia'], df_comparado['Umidade do dia Manaus'], label='Umidade Dia Manaus', marker='o')
     plt.plot(df_comparado['Dia'], df_comparado['Umidade do dia SP'], label='Umidade Dia São Paulo', marker='o')
     plt.title('Comparação de Umidade')
@@ -329,7 +327,7 @@ def unir_planilhas():
     plt.show()
 
     # Comparação do índice UV
-    plt.subplot(3, 1, 3)
+    plt.figure(figsize=(12, 6))
     plt.plot(df_comparado['Dia'], df_comparado['UV do dia Manaus'], label='UV Dia Manaus', marker='o')
     plt.plot(df_comparado['Dia'], df_comparado['UV do dia SP'], label='UV Dia São Paulo', marker='o')
     plt.title('Comparação do Índice UV')
