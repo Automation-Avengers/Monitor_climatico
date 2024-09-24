@@ -38,7 +38,7 @@ BotMaestroSDK.RAISE_NOT_CONNECTED = False
 bot = WebBot()
 
 # ------------------------------------------------------------------------------- Manaus ---------------------------------------------------------------------------------------
-def dados_clima_manaus(bot, lidar_com_cookies=True):
+def dados_clima_manaus(bot):
     bot.browse("https://weather.com/pt-BR/clima/10dias/l/cfa996baf3b36644dd756369dc7afcc16bfab91c7561b06a43bd832bb0d67dfc")
 
     bot.sleep(1000)
@@ -51,18 +51,34 @@ def dados_clima_manaus(bot, lidar_com_cookies=True):
 
     dados = []
 
-    for i in range(1, 11):
-    
-        bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH).click()
 
+    for i in range(0, 9):
     
-        dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
-        max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
-        min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
-        umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
-        umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
-        uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
-        uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
+        if i == 0:
+            dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
+            max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
+            min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
+            umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
+            umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
+            uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
+            uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
+
+        else:
+   
+            if bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH):
+                bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH).click()
+            
+
+            dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
+            max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
+            min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
+            umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
+            umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
+            uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
+            uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
+
+            bot.scroll_down(2)
+
 
         print(f'\nDia: {dia}, max: {max_temp}, min: {min_temp}, umidade: dia: {umidadeDia}, noite: {umidadeNoite}, índice UV: dia: {uvD}, noite: {uvN}\n')
 
@@ -74,7 +90,7 @@ def dados_clima_manaus(bot, lidar_com_cookies=True):
                 'Umidade da noite': umidadeNoite,
                 'Índice UV do dia': uvD,
                 'Índice UV da noite': uvN
-            })
+        })
 
    
     salvar_em_excel_manaus(dados)
@@ -151,18 +167,32 @@ def dados_clima_saopaulo(bot):
 
     dados = []
 
-    for i in range(1, 11):
+    for i in range(0, 9):
     
-        bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH).click()
+        if i == 0:
+            dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
+            max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
+            min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
+            umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
+            umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
+            uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
+            uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
 
-    
-        dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
-        max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
-        min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
-        umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
-        umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
-        uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
-        uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
+        else:
+   
+            if bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH):
+                bot.find_element(f'//*[@id="detailIndex{i}"]/summary/div/div/h2', By.XPATH).click()
+            
+
+            dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
+            max_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/div/div[1]/span', By.XPATH).text
+            min_temp = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[3]/div/div[1]/span', By.XPATH).text
+            umidadeDia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[1]/div/span[2]', By.XPATH).text
+            umidadeNoite = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[1]/div/span[2]', By.XPATH).text
+            uvD = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[2]/ul/li[2]/div/span[2]', By.XPATH).text
+            uvN = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[4]/ul/li[2]/div/span[2]', By.XPATH).text
+
+            bot.scroll_down(2)
 
         print(f'\nDia: {dia}, max: {max_temp}, min: {min_temp}, umidade: dia: {umidadeDia}, noite: {umidadeNoite}, índice UV: dia: {uvD}, noite: {uvN}\n')
 
@@ -244,6 +274,76 @@ def criar_graficos_saopaulo(df):
     
 
 
+def unir_planilhas():
+    # Ler dados das duas planilhas
+    df_manaus = pd.read_excel('dados_clima_manaus.xlsx', engine='openpyxl')
+    df_saopaulo = pd.read_excel('dados_clima_saopaulo.xlsx', engine='openpyxl')
+
+    # Renomear colunas para distinguir entre as cidades
+    df_manaus = df_manaus.rename(columns={
+        'Temp. maxima': 'Temp. maxima Manaus',
+        'Tem. minima ': 'Temp. minima Manaus',
+        'Umidade do dia': 'Umidade do dia Manaus',
+        'Umidade da noite': 'Umidade da noite Manaus',
+        'Índice UV do dia': 'UV do dia Manaus',
+        'Índice UV da noite': 'UV da noite Manaus'
+    })
+
+    df_saopaulo = df_saopaulo.rename(columns={
+        'Temp. maxima': 'Temp. maxima SP',
+        'Tem. minima ': 'Temp. minima SP',
+        'Umidade do dia': 'Umidade do dia SP',
+        'Umidade da noite': 'Umidade da noite SP',
+        'Índice UV do dia': 'UV do dia SP',
+        'Índice UV da noite': 'UV da noite SP'
+    })
+
+    # Unir as planilhas pela coluna "Dia"
+    df_comparado = pd.merge(df_manaus, df_saopaulo, on='Dia')
+
+    # Gerar gráficos comparativos
+    plt.figure(figsize=(14, 7))
+    
+    # Comparação das temperaturas máximas
+    plt.subplot(3, 1, 1)
+    plt.plot(df_comparado['Dia'], df_comparado['Temp. maxima Manaus'], label='Manaus', marker='o')
+    plt.plot(df_comparado['Dia'], df_comparado['Temp. maxima SP'], label='São Paulo', marker='o')
+    plt.title('Comparação de Temperaturas Máximas')
+    plt.xlabel('Dia')
+    plt.ylabel('Temperatura (°C)')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+    # Comparação da umidade
+    plt.subplot(3, 1, 2)
+    plt.plot(df_comparado['Dia'], df_comparado['Umidade do dia Manaus'], label='Umidade Dia Manaus', marker='o')
+    plt.plot(df_comparado['Dia'], df_comparado['Umidade do dia SP'], label='Umidade Dia São Paulo', marker='o')
+    plt.title('Comparação de Umidade')
+    plt.xlabel('Dia')
+    plt.ylabel('Umidade (%)')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+    # Comparação do índice UV
+    plt.subplot(3, 1, 3)
+    plt.plot(df_comparado['Dia'], df_comparado['UV do dia Manaus'], label='UV Dia Manaus', marker='o')
+    plt.plot(df_comparado['Dia'], df_comparado['UV do dia SP'], label='UV Dia São Paulo', marker='o')
+    plt.title('Comparação do Índice UV')
+    plt.xlabel('Dia')
+    plt.ylabel('Índice UV')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+    # Salvar o arquivo combinado
+    df_comparado.to_excel('dados_comparados_manaus_sp.xlsx', index=False, engine='openpyxl')
+    print("Planilhas unidas e dados comparados salvos em 'dados_comparados_manaus_sp.xlsx")
+
 def main():
     # Runner passes the server url, the id of the task being executed,
     # the access token and the parameters that this task receives (when applicable).
@@ -265,9 +365,6 @@ def main():
     # Uncomment to set the WebDriver path
     bot.driver_path = ChromeDriverManager().install()
 
-
-   
-
     # Implement here your logic...
     dados_clima_manaus(bot)
     arquivo_excel = 'dados_clima_manaus.xlsx'
@@ -278,6 +375,8 @@ def main():
     arquivo_excel = 'dados_clima_saopaulo.xlsx'
     dados = ler_dados_excel_saopaulo(arquivo_excel)
     criar_graficos_saopaulo(dados)
+
+    unir_planilhas()
 
 
  
