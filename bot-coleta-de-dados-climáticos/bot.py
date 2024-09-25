@@ -51,8 +51,8 @@ def dados_clima_manaus(bot):
 
     dados = []
 
-
-    for i in range(0, 9):
+    # Acessar os elementos da página
+    for i in range(0, 10):
     
         if i == 0:
             dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
@@ -95,6 +95,7 @@ def dados_clima_manaus(bot):
    
     salvar_em_excel_manaus(dados)
 
+# Salvar os dados em um arquivo excel
 def salvar_em_excel_manaus(dados):
    
     df = pd.DataFrame(dados)
@@ -104,18 +105,22 @@ def salvar_em_excel_manaus(dados):
     print("Dados salvos em 'dados_clima_manaus.xlsx' com sucesso!")
         
 
+# Ler os dados do arquivo excel 
 def ler_dados_excel_manaus(arquivo):
     df = pd.read_excel(arquivo, engine='openpyxl')
     return df
 
 def criar_graficos_manaus(df):
 
+    # Configura o estilo dos gráficos, adiciona uma grade branca ao fundo
     sns.set(style="whitegrid")
 
     plt.figure(figsize=(12, 6))
     
-    
+    # Largura das barras
     bar_width = 0.35
+
+    # Representa a posição das barras no gráfico, baseado no número de linhas no DataFrame.
     x = range(len(df))
 
     # Gráfico de Temperaturas Máximas
@@ -167,7 +172,7 @@ def dados_clima_saopaulo(bot):
 
     dados = []
 
-    for i in range(0, 9):
+    for i in range(0, 10):
     
         if i == 0:
             dia = bot.find_element(f'//*[@id="detailIndex{i}"]/div/div[1]/h2/span', By.XPATH).text
@@ -223,6 +228,7 @@ def ler_dados_excel_saopaulo(arquivo):
     df = pd.read_excel(arquivo, engine='openpyxl')
     return df
 
+
 def criar_graficos_saopaulo(df):
 
     sns.set(style="whitegrid")
@@ -273,6 +279,7 @@ def criar_graficos_saopaulo(df):
     plt.show()
     
 
+# ---------------------------------------------------------------------- Comparação entre Manaus e são Paulo -------------------------------------------------------------------------
 
 def unir_planilhas():
     # Ler dados das duas planilhas
@@ -342,6 +349,7 @@ def unir_planilhas():
     df_comparado.to_excel('dados_comparados_manaus_sp.xlsx', index=False, engine='openpyxl')
     print("Planilhas unidas e dados comparados salvos em 'dados_comparados_manaus_sp.xlsx")
 
+
 def main():
     # Runner passes the server url, the id of the task being executed,
     # the access token and the parameters that this task receives (when applicable).
@@ -363,7 +371,8 @@ def main():
     # Uncomment to set the WebDriver path
     bot.driver_path = ChromeDriverManager().install()
 
-    # Implement here your logic...
+    # Chamando as funções
+
     dados_clima_manaus(bot)
     arquivo_excel = 'dados_clima_manaus.xlsx'
     dados = ler_dados_excel_manaus(arquivo_excel)
