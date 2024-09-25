@@ -130,7 +130,7 @@ def criar_graficos_manaus(df):
     plt.bar([p + bar_width for p in x], df['Tem. minima '], width=bar_width, color='blue', label='Temperatura Mínima')
 
     # Configurações do gráfico
-    plt.title('Temperaturas Máximas e Mínimas por Dia')
+    plt.title('Temperaturas Máximas e Mínimas de Manaus')
     plt.xlabel('Dia')
     plt.ylabel('Temperatura (°C)')
     plt.xticks([p + bar_width / 2 for p in x], df['Dia'], rotation=45)  
@@ -142,7 +142,7 @@ def criar_graficos_manaus(df):
     plt.figure(figsize=(12, 6))
     sns.lineplot(x='Dia', y='Umidade do dia', data=df, marker='o', label='Umidade Dia') 
     sns.lineplot(x='Dia', y='Umidade da noite', data=df, marker='o', label='Umidade Noite')  
-    plt.title('Umidade por Dia')
+    plt.title('Umidade por Dia e Noite de Manaus')
     plt.xlabel('Dia')
     plt.ylabel('Umidade (%)')
     plt.xticks(rotation=45)
@@ -154,7 +154,7 @@ def criar_graficos_manaus(df):
     plt.figure(figsize=(12, 6))
     sns.lineplot(x='Dia', y='Índice UV do dia', data=df, marker='o', label='UV Dia')  
     sns.lineplot(x='Dia', y='Índice UV da noite', data=df, marker='o', label='UV Noite')  
-    plt.title('Índice UV por Dia')
+    plt.title('Índice UV por Dia e Noite de Manaus')
     plt.xlabel('Dia')
     plt.ylabel('Índice UV')
     plt.xticks(rotation=45)
@@ -168,7 +168,7 @@ def criar_graficos_manaus(df):
 def dados_clima_saopaulo(bot):
     bot.browse("https://weather.com/pt-BR/clima/10dias/l/dfb390d5d0537ed3c80f13693bce4fb5ab75fb5fa1ddd5c46fb61fc04264005d")
 
-    bot.sleep(2000)
+    bot.sleep(1000)
 
     dados = []
 
@@ -246,7 +246,7 @@ def criar_graficos_saopaulo(df):
     plt.bar([p + bar_width for p in x], df['Tem. minima '], width=bar_width, color='blue', label='Temperatura Mínima')
 
     # Configurações do gráfico
-    plt.title('Temperaturas Máximas e Mínimas por Dia')
+    plt.title('Temperaturas Máximas e Mínimas de São Paulo')
     plt.xlabel('Dia')
     plt.ylabel('Temperatura (°C)')
     plt.xticks([p + bar_width / 2 for p in x], df['Dia'], rotation=45)  
@@ -258,7 +258,7 @@ def criar_graficos_saopaulo(df):
     plt.figure(figsize=(12, 6))
     sns.lineplot(x='Dia', y='Umidade do dia', data=df, marker='o', label='Umidade Dia') 
     sns.lineplot(x='Dia', y='Umidade da noite', data=df, marker='o', label='Umidade Noite')  
-    plt.title('Umidade por Dia')
+    plt.title('Umidade por Dia e Noite de São Paulo')
     plt.xlabel('Dia')
     plt.ylabel('Umidade (%)')
     plt.xticks(rotation=45)
@@ -270,7 +270,7 @@ def criar_graficos_saopaulo(df):
     plt.figure(figsize=(12, 6))
     sns.lineplot(x='Dia', y='Índice UV do dia', data=df, marker='o', label='UV Dia')  
     sns.lineplot(x='Dia', y='Índice UV da noite', data=df, marker='o', label='UV Noite')  
-    plt.title('Índice UV por Dia')
+    plt.title('Índice UV por Dia e Noite de São Paulo')
     plt.xlabel('Dia')
     plt.ylabel('Índice UV')
     plt.xticks(rotation=45)
